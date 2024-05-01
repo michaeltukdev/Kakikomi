@@ -14,11 +14,13 @@ class NativeAppServiceProvider implements ProvidesPhpIni
     public function boot(): void
     {
         Window::open()
-            ->title('Kakikomi - Note taking')
-            ->width(800)
+            ->title('Kakikomi - Notes')
+            ->width(1400)
             ->height(800)
             ->hideMenu()
-            ->resizable(false);
+            ->resizable(false)
+            ->titleBarHidden()
+            ->position(1100, 400);
     }
 
     /**
