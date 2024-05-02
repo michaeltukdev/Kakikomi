@@ -13,6 +13,7 @@ class Note extends Component
     public $title;
     public $content;
     public $locked;
+    public $starred;
 
     public function rules()
     {
@@ -37,6 +38,16 @@ class Note extends Component
         $this->locked = $this->note->locked;
     }
 
+    public function star()
+    {
+        $this->note->starred = !$this->note->starred;
+        $this->note->save();
+
+        $this->starred = $this->note->starred;
+
+        $this->dispatch('noteSaved');
+    }
+
     public function save()
     {
         $this->validate();
@@ -57,6 +68,7 @@ class Note extends Component
             $this->title = $this->note->title;
             $this->content = $this->note->content;
             $this->locked = $this->note->locked;
+            $this->starred = $this->note->starred;
         } else {
             $note = NoteModel::create([
                 'title' => 'New note',

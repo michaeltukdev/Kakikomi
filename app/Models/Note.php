@@ -13,10 +13,16 @@ class Note extends Model
         'title',
         'content',
         'locked',
+        'starred',
     ];
 
     public function isLocked(): bool
     {
         return $this->locked;
+    }
+
+    public function starred() : bool
+    {
+        return $this->starred;
     }
 }

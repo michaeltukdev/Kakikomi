@@ -13,26 +13,12 @@ class Navigation extends Component
     #[On('noteSaved')] 
     public function noteSaved()
     {
-        $this->notes = Note::all();
-    }
-
-    public function deleteNote($id)
-    {
-        $note = Note::find($id);
-
-        // $note->delete();
-        
-        // $this->notes = Note::all();
-
-        if (request()->routeIs('note') && request()->route('id') == $id) {
-            dd('true');
-            return redirect()->route('home');
-        }
+        $this->notes = Note::all()->sortByDesc('starred');
     }
 
     public function mount()
     {
-        $this->notes = Note::all();
+        $this->notes = Note::all()->sortByDesc('starred');
     }
 
     public function render()
