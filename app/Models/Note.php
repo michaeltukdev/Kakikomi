@@ -12,5 +12,11 @@ class Note extends Model
     protected $fillable = [
         'title',
         'content',
+        'locked',
     ];
+
+    public function isLocked(): bool
+    {
+        return $this->locked;
+    }
 }

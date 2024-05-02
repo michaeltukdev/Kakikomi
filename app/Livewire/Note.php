@@ -12,6 +12,7 @@ class Note extends Component
     public $noteID;
     public $title;
     public $content;
+    public $locked;
 
     public function rules()
     {
@@ -26,6 +27,14 @@ class Note extends Component
         $this->note->delete();
 
         return redirect('home');
+    }
+
+    public function lock()
+    {
+        $this->note->locked = !$this->note->locked;
+        $this->note->save();
+
+        $this->locked = $this->note->locked;
     }
 
     public function save()
@@ -47,6 +56,7 @@ class Note extends Component
             $this->note = NoteModel::find($id);
             $this->title = $this->note->title;
             $this->content = $this->note->content;
+            $this->locked = $this->note->locked;
         } else {
             $note = NoteModel::create([
                 'title' => 'New note',
