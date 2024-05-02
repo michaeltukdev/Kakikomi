@@ -27,7 +27,7 @@ class Note extends Component
     {
         $this->note->delete();
 
-        return redirect('home');
+        return redirect(route('home'));
     }
 
     public function lock()
