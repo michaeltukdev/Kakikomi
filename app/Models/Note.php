@@ -25,4 +25,11 @@ class Note extends Model
     {
         return $this->starred;
     }
+
+    protected function casts(): array
+    {
+        return [
+            'password' => 'hashed',
+        ];
+    }
 }
