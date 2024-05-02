@@ -5,11 +5,10 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-background font-nunito text-gray">
+<body class="bg-background font-nunito text-gray" >
+    <div class="flex flex-col h-screen ">
 
-    <div class="flex flex-col h-screen">
-
-        <div class="bg-container w-full p-4 z-10 flex items-center justify-between border-b border-border">
+        <div class="bg-container w-full p-4 z-10 flex items-center justify-between border-b border-border" style="-webkit-app-region: drag;">
             <div class="flex gap-2">
                 <button class="h-3 w-3 bg-[#FE6059] hover:bg-[#e95951] transition rounded-full"></button>
                 <button class="h-3 w-3 bg-[#FCBB2B] hover:bg-[#e8b32b] transition rounded-full"></button>
