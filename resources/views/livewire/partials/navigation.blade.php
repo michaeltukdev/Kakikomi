@@ -12,7 +12,7 @@
                     stroke="#D7D7D7" stroke-linecap="square" />
             </svg>
 
-            {{ $note->title }}
+            {{ Str::limit($note->title, 20) }}
         </a>
     @endforeach
 </nav>
