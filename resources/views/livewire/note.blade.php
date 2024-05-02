@@ -39,11 +39,11 @@
 
                         <div x-show="open" @click.away="open = false" x-transition x-cloak
                             class="absolute top-8 right-0 bg-container border-border border w-[140px] py-4 px-4 rounded-lg shadow-2xl space-y-4">
-                            <button @click="$wire.lock(); open = false"
+                            <button type="button" @click="$wire.lock(); open = false"
                                 class="w-full text-start hover:text-white transition">
                                 {{ $locked ? 'Unlock Note' : 'Lock Note' }}
                             </button>
-                            <button @click="$wire.delete()"
+                            <button type="button" @click="$wire.delete()"
                                 class="text-red-400 hover:text-red-500 w-full text-start transition">Delete</button>
                         </div>
                     </div>
