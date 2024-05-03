@@ -23,8 +23,6 @@ class Navigation extends Component
 
     public function render()
     {
-        return view('livewire.partials.navigation', [
-            'notes' => $this->notes,
-        ]);
+        return view('livewire.partials.navigation');
     }
 }

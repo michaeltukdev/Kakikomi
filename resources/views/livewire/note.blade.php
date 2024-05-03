@@ -6,6 +6,7 @@
                 <input type="password" wire:model.defer="viewingPassword" placeholder="Enter password to view" 
                 class="rounded-lg w-full max-w-xl bg-border text-base py-2 px-4 outline-none">
                 <button type="submit" class="block mx-auto w-full max-w-xl bg-primary py-2 px-4 rounded-lg hover:bg-secondary transition text-background mt-4">Unlock</button>
+                @error('viewingPassword')<p class="mt-4 text-red-400">{{ $message }}</p> @enderror
             </form>
         </div>
     @endif

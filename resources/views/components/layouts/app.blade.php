@@ -8,25 +8,14 @@
 <body class="bg-background font-nunito text-gray" >
     <div class="flex flex-col h-screen ">
 
-        <div class="bg-container w-full p-4 z-10 flex items-center justify-between border-b border-border" style="-webkit-app-region: drag;">
-            <div class="flex gap-2">
-                <button class="h-3 w-3 bg-[#FE6059] hover:bg-[#e95951] transition rounded-full"></button>
-                <button class="h-3 w-3 bg-[#FCBB2B] hover:bg-[#e8b32b] transition rounded-full"></button>
-                <button class="h-3 w-3 bg-[#2CCC46] hover:bg-[#29c04f] transition rounded-full"></button>
-            </div>
-            <a class="hover:text-white transition text-sm" href="#">New Note</a>
-        </div>
-
-
-
-
+        @livewire('partials.breadcrumbs')
 
         <div class="flex flex-1 overflow-hidden">
-            <div class="bg-container border-r border-border text-white w-full max-w-80 left-0 transform flex flex-col justify-between">
+            <div class="left-0 flex flex-col justify-between w-full text-white transform border-r bg-container border-border max-w-80">
                 @livewire('partials.navigation')
 
-                <div class="border-t border-border p-4">
-                    <a wire:navigate class="text-gray hover:text-white transition flex gap-2" href="{{ route('note') }}">
+                <div class="p-4 border-t border-border">
+                    <a wire:navigate class="flex gap-2 transition text-gray hover:text-white" href="{{ route('note') }}">
 
                         <svg class="mt-1" width="12" height="13" viewBox="0 0 12 13" fill="none"
                             xmlns="http://www.w3.org/2000/svg">

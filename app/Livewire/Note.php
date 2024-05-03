@@ -44,6 +44,8 @@ class Note extends Component
             $this->revealed = true;
             $this->title = Crypt::decrypt($this->note->title);
             $this->content = Crypt::decrypt($this->note->content);
+        } else {
+            $this->addError('viewingPassword', 'The provided password is incorrect.');
         }
     }
 
@@ -121,7 +123,6 @@ class Note extends Component
 
     public function render()
     {
-        return view('livewire.note')
-            ->layout('layouts.app');
+        return view('livewire.note');
     }
 }
