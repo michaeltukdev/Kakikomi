@@ -12,11 +12,6 @@ class Breadcrumbs extends Component
         Window::close();
     }
 
-    public function minimise()
-    {
-        Window::hide();
-    }
-
     public function render()
     {
         return view('livewire.partials.breadcrumbs');

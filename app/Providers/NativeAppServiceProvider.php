@@ -17,7 +17,6 @@ class NativeAppServiceProvider implements ProvidesPhpIni
             ->title('Kakikomi - Notes')
             ->width(1400)
             ->height(800)
-            ->hideMenu()
             ->resizable(false)
             ->hideMenu()
             ->titleBarHidden()
