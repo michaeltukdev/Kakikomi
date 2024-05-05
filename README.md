@@ -8,6 +8,8 @@ As this is open-source, you are free to build this yourself and make any additio
 
 - Basic note-taking 
 - Note starring
+- Password protected notes (Encrypted)
+- Locked notes
 
 ## Prerequisites
 
