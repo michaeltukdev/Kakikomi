@@ -15,6 +15,12 @@ class Navigation extends Component
     {
         $this->notes = Note::all()->sortByDesc('starred');
     }
+    
+    #[On('searchUpdated')]
+    public function filterData($searchTerm)
+    {
+        $this->notes = Note::where('title', 'like', '%' . $searchTerm . '%')->get();
+    }
 
     public function mount()
     {
