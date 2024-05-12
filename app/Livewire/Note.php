@@ -6,16 +6,17 @@ use App\Models\User;
 use Livewire\Component;
 use App\Models\Note as NoteModel;
 use Illuminate\Support\Facades\Crypt;
+use League\CommonMark\Node\Inline\Text;
 
 class Note extends Component
 {
-    public $note;
-    public $noteID;
-    public $title;
-    public $content;
-    public $locked;
-    public $starred;
-    public $viewingPassword;
+    public NoteModel $note;
+    public int $noteID;
+    public String $title;
+    public string $content;
+    public bool $locked;
+    public bool $starred;
+    public String $viewingPassword;
     public String $password;
     public String $password_confirmation;
     public bool $revealed = true;
@@ -25,36 +26,32 @@ class Note extends Component
         $this->validate([
             'password' => 'required|confirmed',
         ]);
-
-        $title = Crypt::encrypt($this->title);
-        $content = Crypt::encrypt($this->content);
-        $hashedPassword = $this->password;
-
-        $this->note->password = $hashedPassword;
-        $this->note->title = $title;
-        $this->note->content = $content;
+    
+        $this->note->title = Crypt::encrypt($this->title);
+        $this->note->content = Crypt::encrypt($this->content);
+        $this->note->password = $this->password;
+    
         $this->note->save();
-
-        $this->redirect(route('note', $this->note->id));
+        return $this->redirectRoute('note', ['id' => $this->note->id]);
     }
-
+    
     public function verifyPassword()
     {
-        if (password_verify($this->viewingPassword, $this->note->password)) {
-            $this->revealed = true;
-            $this->title = Crypt::decrypt($this->note->title);
-            $this->content = Crypt::decrypt($this->note->content);
-        } else {
+        if (!password_verify($this->viewingPassword, $this->note->password)) {
             $this->addError('viewingPassword', 'The provided password is incorrect.');
+            return;
         }
-    }
+    
+        $this->revealed = true;
+        $this->title = Crypt::decrypt($this->note->title);
+        $this->content = Crypt::decrypt($this->note->content);
+    }    
 
     public function delete()
     {
         $this->note->delete();
-
-        return redirect(route('home'));
-    }
+        return $this->redirectRoute('home');
+    }    
 
     public function lock()
     {
@@ -68,12 +65,11 @@ class Note extends Component
     {
         $this->note->starred = !$this->note->starred;
         $this->note->save();
-
-        $this->starred = $this->note->starred;
-
+    
+        $this->starred = $this->note->starred; 
         $this->dispatch('noteSaved');
     }
-
+    
     public function save()
     {
         $this->validate([
@@ -88,24 +84,18 @@ class Note extends Component
         $this->dispatch('noteSaved');
     }
 
-    public function mount($id = null)
+    public function mount(int $id = null)
     {
-        
         if ($id) {
-            $this->note = NoteModel::find($id);
-
-            if(!$this->note) {
-                return $this->redirectRoute('home');
-            }
-
+            $this->note = NoteModel::findOrFail($id);
             $this->setNoteContent();
         } else {
             $note = NoteModel::create([
                 'title' => 'New note',
                 'content' => 'Start your wildest dreams...',
             ]);
-
-            return $this->redirectRoute('note', $note->id);
+    
+            return $this->redirectRoute('note', ['id' => $note->id]);
         }
     }
 
