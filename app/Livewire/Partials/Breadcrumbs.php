@@ -7,9 +7,9 @@ use Native\Laravel\Facades\Window;
 
 class Breadcrumbs extends Component
 {
-    public function close()
+    public function close(string $window = null)
     {
-        Window::close();
+        Window::close($window);
     }
 
     public function render()
