@@ -19,25 +19,18 @@ As this is open-source, you are free to build this yourself and make any additio
 
 ## Setup guide
 
-```
+```bat
 git clone https://github.com/michaeltukdev/Kakikomi.git
-
 cd Kakikomi
-
 composer install
-
-rename .env.example to .env
-
+move .env.example .env
 php artisan key:generate
-
 npm install & npm run build
-
 php artisan native:install
-
 php artisan native:serve 
-
-To build run: php artisan native:build
 ```
+To build run: `php artisan native:build`
+
 
 ## Preview
 
